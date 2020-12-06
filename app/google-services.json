@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "993920046828",
+    "firebase_url": "https://paotonet-efbea.firebaseio.com",
+    "project_id": "paotonet-efbea",
+    "storage_bucket": "paotonet-efbea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993920046828:android:96a191aa2c9cf435f077c9",
+        "android_client_info": {
+          "package_name": "com.example.paotonet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993920046828-n93lb6aepsgt94ia3elr7faaq54meq0d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDELAzpRClY2OAA7mXOLcYrueEEeJ6ywM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993920046828-n93lb6aepsgt94ia3elr7faaq54meq0d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

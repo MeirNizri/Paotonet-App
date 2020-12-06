@@ -1,4 +1,4 @@
-package com.example.pautonetapp;
+package com.example.paotonet;
 
 import org.junit.Test;
 
