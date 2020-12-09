@@ -4,7 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ParentsInterface">
+
+    <TextView
+        android:id="@+id/statement_txt2"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="244dp"
+        android:text="Camera"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statement_img" />
+
+    <ImageView
+        android:id="@+id/camera_img"
+        android:layout_width="160dp"
+        android:layout_height="136dp"
+        android:layout_marginBottom="44dp"
+        android:contentDescription="camera"
+        app:layout_constraintBottom_toTopOf="@+id/msg_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/pngkit_waiter_icon_png_5264668" />
 
     <TextView
         android:id="@+id/parents_txt"
@@ -12,7 +36,7 @@
         android:layout_height="141dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="Welcom to Paotonet"
+        android:text="Parents Portal"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -23,20 +47,20 @@
         android:id="@+id/statement_img"
         android:layout_width="183dp"
         android:layout_height="131dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="4dp"
         android:contentDescription="attendance"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.561"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/parents_txt"
         app:srcCompat="@drawable/attend_img" />
 
     <TextView
         android:id="@+id/statement_txt"
-        android:layout_width="179dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="100dp"
-        android:text="Daily Report"
+        android:layout_width="208dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:text="Helath Statement"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +72,7 @@
         android:layout_height="121dp"
         android:contentDescription="Messages"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/statement_txt"
         app:srcCompat="@drawable/msg_img" />
@@ -56,7 +81,8 @@
         android:id="@+id/msg_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="148dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="168dp"
         android:text="Messages"
         android:textSize="25dp"
         android:textStyle="bold"

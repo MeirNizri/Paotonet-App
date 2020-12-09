@@ -8,14 +8,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.paotonet.Objects.Child;
 import com.example.paotonet.Objects.Message;
 import com.example.paotonet.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessageAdapter extends ArrayAdapter<Message> {
     private Context context;
     private List<Message> messages;
+    ArrayList<Child> children = new ArrayList<>();
 
     public MessageAdapter(Context context, int resource, int textViewResourceId, List<Message> messages) {
         super(context, resource, textViewResourceId, messages);

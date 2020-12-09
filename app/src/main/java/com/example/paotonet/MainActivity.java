@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // create views and listeners
-        attendance = (ImageView) findViewById(R.id.attend_img);
+        attendance = (ImageView) findViewById(R.id.statement_img);
         messages = (ImageView) findViewById(R.id.msg_img);
         attendance.setOnClickListener(this);
         messages.setOnClickListener(this);
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == attendance) {
-            Intent intent = new Intent(getApplicationContext(), Attendance.class);
+            Intent intent = new Intent(getApplicationContext(), LiveCamera.class);
             startActivity(intent);
         }
         if (v == messages) {
