@@ -22,10 +22,10 @@ import java.util.ArrayList;
 
 public class HealthStatement extends AppCompatActivity {
 
-    EditText Child_ID,Child_Name,Child_Familiy_Name,Child_Birth_Day;
-    EditText KinderGarten_City,Manager_Name,KinderGarten_Name;
-    EditText Parent_ID,Parent_Name,Parent_Familiy_Name,Parent_Phone,Parent_Email;
-    CheckBox CheckBox1,CheckBox2,CheckBox3;
+    EditText Child_ID, Child_Name, Child_Familiy_Name, Child_Birth_Day;
+    EditText KinderGarten_City, Manager_Name, KinderGarten_Name;
+    EditText Parent_ID, Parent_Name, Parent_Familiy_Name, Parent_Phone, Parent_Email;
+    CheckBox CheckBox1, CheckBox2, CheckBox3;
     Button Submit;
     ArrayList<Child> children = new ArrayList<Child>();
 
@@ -86,35 +86,35 @@ public class HealthStatement extends AppCompatActivity {
         CheckBox3 = (CheckBox)findViewById(R.id.checkbox3);
 
 
-    Submit = (Button)findViewById(R.id.submit_button);
+        Submit = (Button)findViewById(R.id.submit_button);
 
-    Submit.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            if(Child_ID.getText().toString()!=null) {
-                int input = Integer.parseInt(Child_ID.getText().toString());
-                boolean isExsist = false;
-                boolean Checks = CheckBox1.isChecked() || CheckBox2.isChecked() || CheckBox3.isChecked();
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Child_ID.getText().toString()!=null) {
+                    int input = Integer.parseInt(Child_ID.getText().toString());
+                    boolean isExsist = false;
+                    boolean Checks = CheckBox1.isChecked() || CheckBox2.isChecked() || CheckBox3.isChecked();
 
-                for (int i = 0; i < children.size(); i++) {
-                    Integer id = children.get(i).getId();
-                    if (id == input) {
-                        isExsist = true;
-                        break;
+                    for (int i = 0; i < children.size(); i++) {
+                        Integer id = children.get(i).getId();
+                        if (id == input) {
+                            isExsist = true;
+                            break;
+                        }
+                    }
+                    if (isExsist && Checks) {
+                        Success.show();
+
+                    } else {
+                        Failed.show();
                     }
                 }
-                if (isExsist && Checks) {
-                    Success.show();
-
-                } else {
+                else{
                     Failed.show();
                 }
             }
-            else{
-                Failed.show();
-            }
-        }
-    });
+        });
     }
 
     public void ResetEditTexts(){

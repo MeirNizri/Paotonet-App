@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".ParentInterface">
+
+    <TextView
+        android:id="@+id/welcom_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Hi Meir,\n Welcom To"
+        android:textColor="@color/white"
+        android:textSize="38dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="202dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="PAOTONET"
+        android:textColor="@color/white"
+        android:textSize="31dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcom_parent" />
+
+    <ImageView
+        android:id="@+id/app_icon"
+        android:layout_width="77dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="244dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcom_parent"
+        app:srcCompat="@drawable/app_icon" />
+
+    <ImageView
+        android:id="@+id/form_img"
+        android:layout_width="119dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="health_statement"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/msg_txt"
+        app:srcCompat="@drawable/form_img" />
+
+    <TextView
+        android:id="@+id/form_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fill health statement"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/form_img" />
+
+    <ImageView
+        android:id="@+id/msg_img"
+        android:layout_width="154dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Messages"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_name"
+        app:srcCompat="@drawable/msg_img" />
+
+    <TextView
+        android:id="@+id/msg_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:text="Messages"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_name" />
+
+    <ImageView
+        android:id="@+id/camera_img"
+        android:layout_width="133dp"
+        android:layout_height="116dp"
+        android:layout_marginTop="280dp"
+        android:contentDescription="camera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_name"
+        app:srcCompat="@drawable/cam_img" />
+
+    <TextView
+        android:id="@+id/stream_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:text="Live stream"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/form_txt" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

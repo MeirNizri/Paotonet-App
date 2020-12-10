@@ -46,7 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:checkedButton="@+id/absent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:orientation="horizontal"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,13 +57,15 @@
             android:id="@+id/present"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="15dp" />
+            android:paddingRight="15dp"
+            android:visibility="visible" />
 
         <RadioButton
             android:id="@+id/absent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="15dp" />
+            android:paddingRight="15dp"
+            android:baselineAligned="false" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

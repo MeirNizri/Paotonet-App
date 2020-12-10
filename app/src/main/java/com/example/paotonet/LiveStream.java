@@ -9,13 +9,13 @@ import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class LiveCamera extends AppCompatActivity {
+public class LiveStream extends AppCompatActivity {
     private WebView webview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_live_camera);
+        setContentView(R.layout.activity_live_stream);
         webview = (WebView) findViewById(R.id.webview);
         webview.setWebViewClient(new WebViewClient());
         webview.loadUrl("https://zoo.sandiegozoo.org/cams/baboon-cam");

@@ -1,31 +1,31 @@
 package com.example.paotonet.Objects;
 
 public class Teacher {
-    private String Email;
-    private String password;
+    String name;
+    String email;
+    int kindergartenId;
 
-
-    public Teacher() {
+    public Teacher(String name, String email, int kindergartenId) {
+        this.name = name;
+        this.email = email;
+        this.kindergartenId = kindergartenId;
     }
-
-    public Teacher(String Email,String password) {
-
-        this.Email = Email;
-        this.password = password;
-
+    public String getName() {
+        return name;
     }
-
-    public String getPassword() {
-        return password;
+    public void setName(String name) {
+        this.name = name;
     }
-
-    public void setPassword(String name) {
-        this.password = password;
+    public String getEmail() {
+        return email;
     }
-
-    public String getEmail() { return Email; }
-
-    public void setImg(String Email) { this.Email = Email; }
-
-
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public int getKindergartenId() {
+        return kindergartenId;
+    }
+    public void setKindergartenId(int kindergartenId) {
+        this.kindergartenId = kindergartenId;
+    }
 }

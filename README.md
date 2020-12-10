@@ -1,2 +1,0 @@
-# Paotonet
-Our Pautonet Application

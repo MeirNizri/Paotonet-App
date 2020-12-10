@@ -3,13 +3,19 @@ package com.example.paotonet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.paotonet.Objects.Parent;
+import com.example.paotonet.Objects.Teacher;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    ImageView attendance;
-    ImageView messages;
+    Button parent;
+    Button teacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,10 +23,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // create views and listeners
-        attendance = (ImageView) findViewById(R.id.statement_img);
-        messages = (ImageView) findViewById(R.id.msg_img);
-        attendance.setOnClickListener(this);
-        messages.setOnClickListener(this);
+        parent = (Button) findViewById(R.id.btn_parent);
+        teacher = (Button) findViewById(R.id.btn_teacher);
+        parent.setOnClickListener(this);
+        teacher.setOnClickListener(this);
 
         // code to insert child or message to the database
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -29,16 +35,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        dbRef.child("children").child(child.getName()).setValue(child, listener);
 //        Message m = new Message("Meir", "this is a test message 3", new MyDate());
 //        dbRef.child("messages").child(m.toDateAndTimeString()).setValue(m, listener);
+//        Teacher t = new Teacher("Gali Levi", "Gali@gmail.com", 12345678);
+//        dbRef.child("teachers").child("kbJnIrsTldeX0Y3uD3pujQ6hKv62").setValue(t);
+//        Parent t = new Parent("Dolev Brender", "2dolev20@gmail.com", 12345678, 328736013);
+//        dbRef.child("parents").child("i3OakCgM21YbnvVM0si9afHHzB02").setValue(t);
     }
 
     @Override
     public void onClick(View v) {
-        if (v == attendance) {
-            Intent intent = new Intent(getApplicationContext(), LiveCamera.class);
+        if (v == parent) {
+            Intent intent = new Intent(getApplicationContext(), ParentLogin.class);
             startActivity(intent);
         }
-        if (v == messages) {
-            Intent intent = new Intent(getApplicationContext(), Messages.class);
+        if (v == teacher) {
+            Intent intent = new Intent(getApplicationContext(), TeacherLogin.class);
             startActivity(intent);
         }
     }
