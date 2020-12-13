@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.paotonet.Adapters.MessageAdapter;
 import com.example.paotonet.Objects.Message;
+import com.example.paotonet.Objects.Message_Comperator;
 import com.example.paotonet.Objects.MyDate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Messages extends AppCompatActivity implements View.OnClickListener {
     ArrayList<Message> messages = new ArrayList<>();
@@ -46,6 +48,7 @@ public class Messages extends AppCompatActivity implements View.OnClickListener 
                 for (DataSnapshot data : dataSnapshot.getChildren())
                     messages.add(0, data.getValue(Message.class));
                 // Update the listView for any changes to display all messages
+                Collections.sort(messages, new Message_Comperator());
                 listView.setAdapter(messageAdapter);
             }
             @Override

@@ -4,15 +4,17 @@ public class Child {
     private int id;
     private String name;
     private String img;
+    private String lastSignedDeclaration;
     private MyDate birthDate;
 
     public Child() {
     }
 
-    public Child(int id, String name, String img, MyDate birthDate) {
+    public Child(int id, String name, String img, String lastSignedDeclaration, MyDate birthDate) {
         this.id = id;
         this.name = name;
         this.img = img;
+        this.lastSignedDeclaration = lastSignedDeclaration;
         this.birthDate = birthDate;
     }
 
@@ -38,6 +40,14 @@ public class Child {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getLastSignedDeclaration() {
+        return lastSignedDeclaration;
+    }
+
+    public void setLastSignedDeclaration(String lastSignedDeclaration) {
+        this.lastSignedDeclaration = lastSignedDeclaration;
     }
 
     public MyDate getBirthDate() {

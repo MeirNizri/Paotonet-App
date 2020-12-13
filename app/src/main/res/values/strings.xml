@@ -18,4 +18,10 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="fever_check">I measured my child\'s fever near his exit to the educational institution, and it was found that his body temperature was below 38 degrees Celsius.</string>
+    <string name="cough_check">My child does not cough and has no breathing difficulties, except for a cough or difficulty breathing due to a chronic condition such as asthma or allergy. For this purpose, rhinitis alone will not be considered a symptom.</string>
+    <string name="taste_check">To the best of my knowledge, my child have no change in their sense of taste or smell.</string>
+    <string name="contact_check">To the best of my knowledge my child has not been in close contact with a COVID-19 patient in the last two weeks.</string>
+    <string name="isolation_check">My child has not been in the last 14 days in a country whose returnees are committed to isolation.</string>
+    <string name="declaration_explain">Please fill in the details and sign the health statement.</string>
 </resources>

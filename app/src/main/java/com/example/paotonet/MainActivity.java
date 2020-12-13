@@ -8,6 +8,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.paotonet.Objects.Child;
+import com.example.paotonet.Objects.MyDate;
 import com.example.paotonet.Objects.Parent;
 import com.example.paotonet.Objects.Teacher;
 import com.google.firebase.database.DatabaseReference;
@@ -31,8 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // code to insert child or message to the database
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        DatabaseReference dbRef = database.getReference();
-//        Child child = new Child(296382916, "Adi Alon", "@drawable/baby1", new MyDate(30,8,2017));
-//        dbRef.child("children").child(child.getName()).setValue(child, listener);
+//        MyDate date = new MyDate();
+//        Child child = new Child(312237542, "Zur Nizri", "zur", date.toDateString() ,new MyDate(23,4,2018));
+//        dbRef.child("children").child(child.getName()).setValue(child);
 //        Message m = new Message("Meir", "this is a test message 3", new MyDate());
 //        dbRef.child("messages").child(m.toDateAndTimeString()).setValue(m, listener);
 //        Teacher t = new Teacher("Gali Levi", "Gali@gmail.com", 12345678);
