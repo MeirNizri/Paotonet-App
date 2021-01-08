@@ -73,7 +73,10 @@ public class MyDate {
         return day+"\\"+month+"\\"+year;
     }
     public String toTimeString() {
-        return String.format("%02d:%02d", hour,minute);
+        return String.format("%02d:%02d", hour, minute);
+    }
+    public String toTimeAndDateString() {
+        return String.format("%02d:%02d ", hour, minute) + String.format(" %02d-%02d", day, month);
     }
     @Override
     public String toString() {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
 
     <TextView
         android:id="@+id/welcom"
@@ -53,7 +53,7 @@
         android:layout_height="76dp"
         android:layout_gravity="center"
         android:layout_marginTop="52dp"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="#CCFFFFFF"
         android:text="Enter as a Parent"
         android:textColor="#277AB0"
         android:textSize="22sp"
@@ -68,7 +68,7 @@
         android:layout_height="76dp"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="#CCFFFFFF"
         android:text="Enter as a Teacher"
         android:textColor="#277AB0"
         android:textSize="22sp"

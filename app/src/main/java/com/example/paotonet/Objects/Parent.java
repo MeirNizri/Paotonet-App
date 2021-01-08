@@ -5,13 +5,25 @@ public class Parent {
     String email;
     int kindergartenId;
     int childId;
-    
+    Messages messages;
+
+    public Parent() {
+        super();
+    }
     public Parent(String name, String email, int kindergartenId, int childId) {
         this.name = name;
         this.email = email;
         this.kindergartenId = kindergartenId;
         this.childId = childId;
     }
+    public Parent(String name, String email, int kindergartenId, int childId, Messages messages) {
+        this.name = name;
+        this.email = email;
+        this.kindergartenId = kindergartenId;
+        this.childId = childId;
+        this.messages = messages;
+    }
+
     public String getName() {
         return name;
     }
@@ -35,5 +47,11 @@ public class Parent {
     }
     public void setChildId(int childId) {
         this.childId = childId;
+    }
+    public Messages getMessages() {
+        return messages;
+    }
+    public void setMessages(Messages messages) {
+        this.messages = messages;
     }
 }

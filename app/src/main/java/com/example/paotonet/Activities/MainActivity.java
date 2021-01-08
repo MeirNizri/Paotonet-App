@@ -1,19 +1,34 @@
-package com.example.paotonet;
+package com.example.paotonet.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.paotonet.Objects.Child;
+import com.example.paotonet.Objects.Children;
+import com.example.paotonet.Objects.DailyReport;
+import com.example.paotonet.Objects.Kindergarten;
+import com.example.paotonet.Objects.Message;
+import com.example.paotonet.Objects.Message_Comperator;
+import com.example.paotonet.Objects.Messages;
 import com.example.paotonet.Objects.MyDate;
 import com.example.paotonet.Objects.Parent;
+import com.example.paotonet.Objects.Reports;
 import com.example.paotonet.Objects.Teacher;
+import com.example.paotonet.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.Repo;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button parent;
@@ -31,17 +46,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         teacher.setOnClickListener(this);
 
         // code to insert child or message to the database
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference dbRef = database.getReference();
-//        MyDate date = new MyDate();
-//        Child child = new Child(312237542, "Zur Nizri", "zur", date.toDateString() ,new MyDate(23,4,2018));
-//        dbRef.child("children").child(child.getName()).setValue(child);
-//        Message m = new Message("Meir", "this is a test message 3", new MyDate());
-//        dbRef.child("messages").child(m.toDateAndTimeString()).setValue(m, listener);
-//        Teacher t = new Teacher("Gali Levi", "Gali@gmail.com", 12345678);
-//        dbRef.child("teachers").child("kbJnIrsTldeX0Y3uD3pujQ6hKv62").setValue(t);
-//        Parent t = new Parent("Dolev Brender", "2dolev20@gmail.com", 12345678, 328736013);
-//        dbRef.child("parents").child("i3OakCgM21YbnvVM0si9afHHzB02").setValue(t);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference dbRef = database.getReference();
+        DailyReport d = new DailyReport();
+        d.addChild(312237542);
+        Reports r = new Reports();
+        r.addReport(d);
+        dbRef.child("kindergartens").child("12345678").child("reports").setValue(r);
     }
 
     @Override

@@ -9,18 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Paotonet">
-        <activity android:name=".LiveStream"></activity>
-        <activity android:name=".HealthStatement" />
-        <activity android:name=".ParentInterface" />
-        <activity android:name=".ParentLogin" />
-        <activity android:name=".TeacherLogin" />
+        <activity android:name=".Activities.GeneralMessages"></activity>
+        <activity android:name=".Activities.LiveStream" />
+        <activity android:name=".Activities.HealthStatement" />
+        <activity android:name=".Activities.ParentInterface" />
+        <activity android:name=".Activities.ParentLogin" />
+        <activity android:name=".Activities.TeacherLogin" />
         <activity
             android:name=".ui.login.TeacherLogin"
             android:label="@string/title_activity_teacher_login" />
-        <activity android:name=".TeacherInterface" />
-        <activity android:name=".Messages" />
-        <activity android:name=".Attendance" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.TeacherInterface" />
+        <activity android:name=".Activities.PrivateMessages" />
+        <activity android:name=".Activities.Attendance" />
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

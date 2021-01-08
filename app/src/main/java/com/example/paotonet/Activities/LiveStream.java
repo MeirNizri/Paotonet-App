@@ -1,4 +1,4 @@
-package com.example.paotonet;
+package com.example.paotonet.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.Display;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.example.paotonet.R;
 
 public class LiveStream extends AppCompatActivity {
     private WebView webview;

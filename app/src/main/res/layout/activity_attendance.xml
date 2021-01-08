@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Attendance">
+    tools:context=".Activities.Attendance">
 
     <Button
         android:id="@+id/all_absent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="56dp"
-        android:background="#4b98b2"
+        android:layout_marginEnd="76dp"
+        android:background="@drawable/blue_button"
         android:text="All Absent"
-        android:textColor="#fff"
-        android:textSize="11sp"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,12 +24,13 @@
         android:id="@+id/all_present"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="76dp"
         android:layout_marginTop="28dp"
-        android:background="#4b98b2"
+        android:background="@drawable/blue_button"
         android:text="All Present"
-        android:textColor="#fff"
-        android:textSize="11sp"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,7 +65,7 @@
         android:id="@+id/labelPresent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
+        android:layout_marginStart="108dp"
         android:layout_marginTop="20dp"
         android:text="Present"
         android:textColor="#000"
@@ -74,11 +76,15 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="387dp"
+        android:layout_width="match_parent"
         android:layout_height="410dp"
-        android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
-        android:background="@color/white"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/listview_frame"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelName" />
 
@@ -86,12 +92,14 @@
         android:id="@+id/save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="16dp"
+        android:textSize="14sp"
+        android:background="#9C9C9C"
         android:text="Save"
-        android:textColor="#fff"
-        android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listView" />
 

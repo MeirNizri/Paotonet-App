@@ -1,4 +1,4 @@
-package com.example.paotonet;
+package com.example.paotonet.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.paotonet.Objects.Child;
 import com.example.paotonet.Objects.MyDate;
+import com.example.paotonet.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
