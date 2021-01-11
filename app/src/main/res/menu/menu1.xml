@@ -23,12 +23,6 @@
                 android:title="More Info"
                 app:showAsAction="never" />
             <item
-                android:id="@+id/about"
-                android:icon="@drawable/info_icon"
-                android:orderInCategory="300"
-                android:title="About"
-                app:showAsAction="never" />
-            <item
                 android:id="@+id/logout"
                 android:icon="@drawable/logout_icon"
                 android:orderInCategory="400"

@@ -30,7 +30,7 @@ public class Messages {
     public ArrayList<Message> getMessagesBySender(String sender){
         ArrayList<Message> result = new ArrayList<Message>();
         for(Message m : messages) {
-            if(m.getSender().equals(sender)) {
+            if(m.getSender().equals(sender) && !m.getDestination().equals("broadcast")) {
                 result.add(m);
             }
         }

@@ -1,26 +1,38 @@
 package com.example.paotonet.Activities;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.paotonet.Objects.Child;
 import com.example.paotonet.Objects.Children;
+import com.example.paotonet.Objects.DailyReceiverParent;
 import com.example.paotonet.Objects.MyDate;
 import com.example.paotonet.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Calendar;
 
 public class HealthStatement extends AppCompatActivity implements View.OnClickListener {
     CheckBox[] checkBoxes = new CheckBox[5];
@@ -37,6 +49,12 @@ public class HealthStatement extends AppCompatActivity implements View.OnClickLi
 
     AlertDialog.Builder Failed;
     AlertDialog.Builder Success;
+
+    Dialog infoDialog;
+    Button cancelBtn;
+    Dialog notificationDialog;
+    TimePicker timePicker;
+    Button setAlarm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +127,22 @@ public class HealthStatement extends AppCompatActivity implements View.OnClickLi
                 Failed.show();
             }
         }
+
+        else if(v == cancelBtn) {
+            infoDialog.dismiss();
+        }
+        else if(v == setAlarm) {
+            notificationDialog.dismiss();
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                int hour = timePicker.getHour();
+                int minute = timePicker.getMinute();
+                setAlarm(hour,minute);
+                Toast.makeText(getApplicationContext(), "Alarm set in "+String.format("%02d:%02d", hour, minute), Toast.LENGTH_LONG).show();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Set notification failed", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     // Listener that inform the user if the information is stored properly in the DB or not
@@ -119,4 +153,75 @@ public class HealthStatement extends AppCompatActivity implements View.OnClickLi
                 Toast.makeText(getApplicationContext(),dbError.getMessage(), Toast.LENGTH_LONG).show();
         }
     };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu1, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                FirebaseAuth.getInstance().signOut();
+                this.finish();
+                return true;
+            case R.id.information:
+                createInfoDialog();
+                return true;
+            case R.id.notification:
+                createNotificationDialog();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void createInfoDialog(){
+        // set dialog Properties
+        infoDialog = new Dialog(this);
+        infoDialog.setContentView(R.layout.info_dialog);
+        infoDialog.setCancelable(true);
+        infoDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        // initialize views
+        cancelBtn = (Button)infoDialog.findViewById(R.id.return_btn);
+        cancelBtn.setOnClickListener(this);
+
+        // open dialog
+        infoDialog.show();
+    }
+
+    public void createNotificationDialog(){
+        // set dialog Properties
+        notificationDialog = new Dialog(this);
+        notificationDialog.setContentView(R.layout.set_notification_dialog);
+        notificationDialog.setCancelable(true);
+        notificationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        // initialize views
+        timePicker = (TimePicker)notificationDialog.findViewById((R.id.timePicker));
+        setAlarm = (Button)notificationDialog.findViewById(R.id.buttonAlarm);
+        setAlarm.setOnClickListener(this);
+
+        // open dialog
+        notificationDialog.show();
+    }
+
+    public void setAlarm(int hour, int minute) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        Intent myIntent = new Intent(this, DailyReceiverParent.class);
+        int ALARM_ID = 1000;
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), ALARM_ID, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+    }
 }

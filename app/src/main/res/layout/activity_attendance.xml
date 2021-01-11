@@ -7,31 +7,17 @@
 
     tools:context=".Activities.Attendance">
 
-    <Button
-        android:id="@+id/all_absent"
+    <TextView
+        android:id="@+id/headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="76dp"
-        android:background="@drawable/blue_button"
-        android:text="All Absent"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/all_present"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/blue_button"
-        android:text="All Present"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        android:textAllCaps="false"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="18dp"
+        android:gravity="left"
+        android:paddingHorizontal="15dp"
+        android:text="Attendance Report for date 10/01/21"
+        android:textSize="23sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,40 +26,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="name"
         android:textColor="#000"
-        android:textSize="13sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/all_present" />
+        app:layout_constraintTop_toBottomOf="@+id/headline" />
 
     <TextView
         android:id="@+id/labelAbsent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="Absent"
         android:textColor="#000"
-        android:textSize="13sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/labelPresent"
-        app:layout_constraintTop_toBottomOf="@+id/all_present" />
+        app:layout_constraintTop_toBottomOf="@+id/headline" />
 
 
     <TextView
         android:id="@+id/labelPresent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="15dp"
         android:text="Present"
         android:textColor="#000"
-        android:textSize="13sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/labelName"
-        app:layout_constraintTop_toBottomOf="@+id/all_present" />
+        app:layout_constraintTop_toBottomOf="@+id/headline" />
 
     <ListView
         android:id="@+id/listView"
@@ -96,7 +82,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="13dp"
         android:textSize="14sp"
         android:background="#9C9C9C"
         android:text="Save"

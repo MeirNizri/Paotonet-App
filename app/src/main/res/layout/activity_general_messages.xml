@@ -21,7 +21,7 @@
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="382dp"
-        android:layout_height="560dp"
+        android:layout_height="530dp"
         android:layout_marginStart="6dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="6dp"
@@ -42,7 +42,7 @@
             android:layout_width="160dp"
             android:layout_height="35dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="490dp"
+            android:layout_marginTop="410dp"
             android:background="@drawable/white_button"
             android:drawableEnd="@drawable/pen_small_icon"
             android:paddingStart="15dp"

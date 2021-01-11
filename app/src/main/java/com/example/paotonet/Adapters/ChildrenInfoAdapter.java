@@ -55,7 +55,7 @@ public class ChildrenInfoAdapter extends ArrayAdapter<Child> {
 
         // initial views to child data
         final Child child = children.get(position);
-        name.setText("Name: "+child.getName());
+        name.setText(child.getName());
         id.setText("Id: "+String.valueOf(child.getId()));
         birthdate.setText("Birthdate: "+child.getBirthDate().toDateString());
         moreInfo.setText("More Information: "+child.getMoreInfo());

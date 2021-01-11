@@ -29,6 +29,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver
+            android:name=".Objects.DailyReceiverParent"
+            android:enabled="true" />
+        <receiver
+            android:name=".Objects.DailyReceiverTeacher"
+            android:enabled="true" />
     </application>
 
 </manifest>

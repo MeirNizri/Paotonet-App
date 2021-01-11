@@ -1,28 +1,29 @@
 package com.example.paotonet.Activities;
 
+import android.app.AlarmManager;
 import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 
+import com.example.paotonet.Objects.DailyReceiverParent;
+import com.example.paotonet.Objects.DailyReceiverTeacher;
 import com.example.paotonet.R;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Calendar;
 
 public class TeacherInterface extends AppCompatActivity implements View.OnClickListener {
     FrameLayout privateMessages;
@@ -33,8 +34,11 @@ public class TeacherInterface extends AppCompatActivity implements View.OnClickL
     TextView welcome_msg;
     String userName;
 
-    Dialog newMsgDialog;
+    Dialog infoDialog;
     Button cancelBtn;
+    Dialog notificationDialog;
+    TimePicker timePicker;
+    Button setAlarm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,7 @@ public class TeacherInterface extends AppCompatActivity implements View.OnClickL
             startActivity(intent);
         } else if (v == generalMessages) {
             Intent intent = new Intent(getApplicationContext(), GeneralMessages.class);
+            intent.putExtra("userType", "teacher");
             intent.putExtra("userName", userName);
             intent.putExtra("kindergartenId", kindergartenId);
             startActivity(intent);
@@ -84,7 +89,19 @@ public class TeacherInterface extends AppCompatActivity implements View.OnClickL
             startActivity(intent);
         }
         else if(v == cancelBtn) {
-            newMsgDialog.dismiss();
+            infoDialog.dismiss();
+        }
+        else if(v == setAlarm) {
+            notificationDialog.dismiss();
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                int hour = timePicker.getHour();
+                int minute = timePicker.getMinute();
+                setAlarm(hour,minute);
+                Toast.makeText(getApplicationContext(), "Alarm set in "+String.format("%02d:%02d", hour, minute), Toast.LENGTH_LONG).show();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Set notification failed", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -103,50 +120,63 @@ public class TeacherInterface extends AppCompatActivity implements View.OnClickL
                 FirebaseAuth.getInstance().signOut();
                 this.finish();
                 return true;
-
             case R.id.information:
-                createDialog();
+                createInfoDialog();
                 return true;
-
             case R.id.notification:
-                addNotification("123");
+                createNotificationDialog();
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    public void createDialog(){
+    public void createInfoDialog(){
         // set dialog Properties
-        newMsgDialog = new Dialog(this);
-        newMsgDialog.setContentView(R.layout.info_dialog);
-        newMsgDialog.setCancelable(true);
-        newMsgDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        infoDialog = new Dialog(this);
+        infoDialog.setContentView(R.layout.info_dialog);
+        infoDialog.setCancelable(true);
+        infoDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         // initialize views
-        cancelBtn = (Button)newMsgDialog.findViewById(R.id.return_btn);
+        cancelBtn = (Button)infoDialog.findViewById(R.id.return_btn);
         cancelBtn.setOnClickListener(this);
 
         // open dialog
-        newMsgDialog.show();
+        infoDialog.show();
     }
 
-    private void addNotification(String channel) {
-        Notification.Builder notificationBuilder;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationBuilder = new Notification.Builder(this, channel);
-        } else {
-            //noinspection deprecation
-            notificationBuilder = new Notification.Builder(this);
-        }
-        Notification notification = notificationBuilder
-                .setContentTitle("notification type " + channel)
-                .setSmallIcon(R.drawable.alarm_icon)
-                .setContentText("You have a new message in channel " + channel).build();
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify((int) System.currentTimeMillis(), notification);
-        //notificationManager.notify(1,notification)
+    public void createNotificationDialog(){
+        // set dialog Properties
+        notificationDialog = new Dialog(this);
+        notificationDialog.setContentView(R.layout.set_notification_dialog);
+        notificationDialog.setCancelable(true);
+        notificationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        // change headline
+        TextView headline = (TextView)notificationDialog.findViewById((R.id.headline));
+        headline.setText("Select a time when you will be sent a reminder to fill out attendance report");
+
+        // initialize views
+        timePicker = (TimePicker)notificationDialog.findViewById((R.id.timePicker));
+        setAlarm = (Button)notificationDialog.findViewById(R.id.buttonAlarm);
+        setAlarm.setOnClickListener(this);
+
+        // open dialog
+        notificationDialog.show();
+    }
+
+    public void setAlarm(int hour, int minute) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        Intent myIntent = new Intent(this, DailyReceiverTeacher.class);
+        int ALARM_ID = 1000;
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), ALARM_ID, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 }
