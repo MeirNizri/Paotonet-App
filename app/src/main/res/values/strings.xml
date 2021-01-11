@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Paotonet</string>
+    <string name="app_name">Paotonet App</string>
     <string name="title_activity_teacher_interface">TeacherInterface</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -24,4 +25,7 @@
     <string name="contact_check">To the best of my knowledge my child has not been in close contact with a COVID-19 patient in the last two weeks.</string>
     <string name="isolation_check">My child has not been in the last 14 days in a country whose returnees are committed to isolation.</string>
     <string name="declaration_explain">Please fill in the details and sign the health statement.</string>
+    <string name="activity_times">"- The opening date of the school year is Sunday 30/08/2020 and The last day of school is 08/08/2021. \n
+                                  - The kindergarten operates every day from 7:00 and ends in Sundays-Thursdays at 16:00 and on Fridays at 12:45. \n
+                                  - Do not bring children to the kindergarten after 9:00. Arrival after 9:00 is subject to the approval of the principal and will be given only in exceptional cases."</string>
 </resources>

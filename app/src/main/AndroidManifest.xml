@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Paotonet">
-        <activity android:name=".Activities.GeneralMessages"></activity>
+        <activity android:name=".Activities.ChildrenInfo"></activity>
+        <activity android:name=".Activities.GeneralMessages" />
         <activity android:name=".Activities.LiveStream" />
         <activity android:name=".Activities.HealthStatement" />
         <activity android:name=".Activities.ParentInterface" />

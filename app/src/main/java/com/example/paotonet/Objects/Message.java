@@ -1,11 +1,11 @@
 package com.example.paotonet.Objects;
 
 public class Message {
-    String title;
-    String sender;
-    String destination;
-    String content;
-    MyDate time;
+    private String title;
+    private String sender;
+    private String destination;
+    private String content;
+    private MyDate time;
 
     public Message() {
     }

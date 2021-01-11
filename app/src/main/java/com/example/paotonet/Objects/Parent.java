@@ -2,7 +2,7 @@ package com.example.paotonet.Objects;
 
 public class Parent {
     String name;
-    String email;
+    String phone;
     int kindergartenId;
     int childId;
     Messages messages;
@@ -12,13 +12,13 @@ public class Parent {
     }
     public Parent(String name, String email, int kindergartenId, int childId) {
         this.name = name;
-        this.email = email;
+        this.phone = phone;
         this.kindergartenId = kindergartenId;
         this.childId = childId;
     }
-    public Parent(String name, String email, int kindergartenId, int childId, Messages messages) {
+    public Parent(String name, String phone, int kindergartenId, int childId, Messages messages) {
         this.name = name;
-        this.email = email;
+        this.phone = phone;
         this.kindergartenId = kindergartenId;
         this.childId = childId;
         this.messages = messages;
@@ -30,11 +30,11 @@ public class Parent {
     public void setName(String name) {
         this.name = name;
     }
-    public String getEmail() {
-        return email;
+    public String getPhone() {
+        return phone;
     }
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPhone(String email) {
+        this.phone = email;
     }
     public int getKindergartenId() {
         return kindergartenId;

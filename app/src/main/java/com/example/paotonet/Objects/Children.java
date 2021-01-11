@@ -33,4 +33,20 @@ public class Children {
         }
         return null;
     }
+    public String getChildName(int id){
+        String name = " ";
+        for(Child c : children) {
+            if(id == c.getId()) {
+                name = c.getName();
+            }
+        }
+        return name;
+    }
+    public void updateHealthDeclaration(int id) {
+        MyDate currentDate = new MyDate();
+        for(Child c : children) {
+            if (c.getId() == id)
+                c.setLastSignedDeclaration(currentDate.toDateString());
+        }
+    }
 }

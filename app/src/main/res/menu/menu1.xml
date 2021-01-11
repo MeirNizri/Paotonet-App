@@ -2,19 +2,38 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<item
-    android:id="@+id/logout"
-    android:title="Logout"
-    app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/overflowMenu"
+        android:icon="@drawable/dot_icon"
+        android:title=""
+        app:showAsAction="always">
 
-<item
-    android:id="@+id/notification"
-    android:title="Notification"
-    app:showAsAction="ifRoom"/>
+        <menu>
+            <item
+                android:id="@+id/notification"
+                android:icon="@drawable/alarm_icon"
+                android:orderInCategory="100"
+                android:title="Set Notification"
+                app:showAsAction="never" />
 
-<item
-    android:id="@+id/about"
-    android:title="about"
-    app:showAsAction="ifRoom"/>
-
+            <item
+                android:id="@+id/information"
+                android:icon="@drawable/info_icon"
+                android:orderInCategory="200"
+                android:title="More Info"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/info_icon"
+                android:orderInCategory="300"
+                android:title="About"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/logout_icon"
+                android:orderInCategory="400"
+                android:title="Logout"
+                app:showAsAction="never" />
+        </menu>
+    </item>
 </menu>

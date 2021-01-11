@@ -9,11 +9,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.paotonet.Adapters.ChildrenAdapter;
+import com.example.paotonet.Adapters.ChildrenAttendanceAdapter;
 import com.example.paotonet.Objects.Child;
 import com.example.paotonet.Objects.Children;
 import com.example.paotonet.Objects.DailyReport;
-import com.example.paotonet.Objects.MyDate;
 import com.example.paotonet.Objects.Reports;
 import com.example.paotonet.R;
 
@@ -32,7 +31,7 @@ public class Attendance extends AppCompatActivity implements View.OnClickListene
     Reports allReports = new Reports();
     ArrayList<Child> children = new ArrayList<Child>();
     ListView listView;
-    ChildrenAdapter adapter;
+    ChildrenAttendanceAdapter adapter;
 
     Button saveBtn;
 
@@ -48,7 +47,7 @@ public class Attendance extends AppCompatActivity implements View.OnClickListene
 
         // initialize listView and adapter
         listView = findViewById(R.id.listView);
-        adapter = new ChildrenAdapter(Attendance.this, 0, 0, children);
+        adapter = new ChildrenAttendanceAdapter(Attendance.this, 0, 0, children);
 
         // Set listener on the children saved in the database
         dbRef.addValueEventListener(new ValueEventListener() {

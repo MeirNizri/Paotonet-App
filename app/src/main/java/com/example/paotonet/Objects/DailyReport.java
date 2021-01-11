@@ -3,8 +3,8 @@ package com.example.paotonet.Objects;
 import java.util.ArrayList;
 
 public class DailyReport {
-    MyDate date;
-    ArrayList<Integer> presentId;
+    private MyDate date;
+    private ArrayList<Integer> presentId;
 
     public DailyReport() {
         this.presentId = new ArrayList<>();

@@ -12,7 +12,7 @@ public class MyDate {
 
     public MyDate() {
         Calendar date = Calendar.getInstance();
-        this.year = date.get(Calendar.YEAR);
+        this.year = date.get(Calendar.YEAR)%100;
         this.month = date.get(Calendar.MONTH)+1;
         this.day = date.get(Calendar.DAY_OF_MONTH);
         this.hour = date.get(Calendar.HOUR_OF_DAY);
@@ -70,7 +70,7 @@ public class MyDate {
         this.second = second;
     }
     public String toDateString() {
-        return day+"\\"+month+"\\"+year;
+        return day+"/"+month+"/"+year;
     }
     public String toTimeString() {
         return String.format("%02d:%02d", hour, minute);
@@ -80,6 +80,6 @@ public class MyDate {
     }
     @Override
     public String toString() {
-        return day+"\\"+month+"\\"+year + "  " + String.format("%02d:%02d:%02d",hour,minute,second);
+        return day+"/"+month+"/"+year + "  " + String.format("%02d:%02d:%02d",hour,minute,second);
     }
 }

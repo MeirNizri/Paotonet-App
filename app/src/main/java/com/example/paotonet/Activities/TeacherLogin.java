@@ -52,31 +52,34 @@ public class TeacherLogin extends AppCompatActivity implements View.OnClickListe
             String emailText = email.getText().toString();
             String passwordText = password.getText().toString();
             signIn(emailText, passwordText);
-
-            if (v == back) {
-                firebaseAuth.signOut();
-                finish();
-            }
+        }
+        if (v == back) {
+            firebaseAuth.signOut();
+            finish();
         }
     }
 
     private void signIn(String email, String password) {
+        // If the email field or password is empty, send the user an appropriate message
         if (email.length() < 1 || password.length() < 1)
             Toast.makeText(getApplicationContext(), "Please enter email address and password", Toast.LENGTH_SHORT).show();
         else {
+            // check if email and password is valid
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+                        // get the user object
                         String userId = firebaseAuth.getInstance().getCurrentUser().getUid();
                         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("users/teachers");
-                        ValueEventListener listener = new ValueEventListener() {
+                        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.hasChild(userId)) {
+                                    // send success message to user and move to teacher interface
                                     Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(getApplicationContext(), TeacherInterface.class);
-                                    // Get the Teacher name and kindergarten id pass it to the next intent
+                                    // Get the Teacher name and kindergarten id and pass it to the next intent
                                     Teacher t = dataSnapshot.child(userId).getValue(Teacher.class);
                                     intent.putExtra("userName", t.getName());
                                     intent.putExtra("kindergartenId", t.getKindergartenId());
@@ -85,13 +88,12 @@ public class TeacherLogin extends AppCompatActivity implements View.OnClickListe
                                     resetLogin();
                                 }
                             }
+
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
                                 Log.w(null, "loadPost:onCancelled", databaseError.toException());
                             }
-                        };
-                        //
-                        dbRef.addListenerForSingleValueEvent(listener);
+                        });
                     } else
                         resetLogin();
                 }

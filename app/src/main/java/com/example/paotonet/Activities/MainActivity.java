@@ -1,34 +1,19 @@
 package com.example.paotonet.Activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
 
-import com.example.paotonet.Objects.Child;
-import com.example.paotonet.Objects.Children;
-import com.example.paotonet.Objects.DailyReport;
-import com.example.paotonet.Objects.Kindergarten;
-import com.example.paotonet.Objects.Message;
-import com.example.paotonet.Objects.Message_Comperator;
-import com.example.paotonet.Objects.Messages;
-import com.example.paotonet.Objects.MyDate;
-import com.example.paotonet.Objects.Parent;
-import com.example.paotonet.Objects.Reports;
-import com.example.paotonet.Objects.Teacher;
 import com.example.paotonet.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.core.Repo;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button parent;
@@ -45,14 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         parent.setOnClickListener(this);
         teacher.setOnClickListener(this);
 
-        // code to insert child or message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dbRef = database.getReference();
-        DailyReport d = new DailyReport();
-        d.addChild(312237542);
-        Reports r = new Reports();
-        r.addReport(d);
-        dbRef.child("kindergartens").child("12345678").child("reports").setValue(r);
+        createChannel();
     }
 
     @Override
@@ -66,4 +44,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
     }
+
+    private void createChannel() {
+        NotificationManager mNotificationManager= null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mNotificationManager = getSystemService(NotificationManager.class);
+        }
+        String id = "123";
+        CharSequence name = "channel 1- example";
+        String description = "This is the desc of channel 1 example";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel mChannel = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mChannel = new NotificationChannel(id, name, importance);
+            mChannel.setDescription(description);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mNotificationManager.createNotificationChannel(mChannel);
+        }
+    }
+
 }

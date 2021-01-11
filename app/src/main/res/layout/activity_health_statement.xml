@@ -5,323 +5,213 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="#F2F2F2"
     tools:context=".Activities.HealthStatement">
 
     <TextView
-        android:id="@+id/health_declaration_explain"
+        android:id="@+id/headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="18dp"
         android:gravity="left"
         android:paddingHorizontal="15dp"
-        android:text="@string/declaration_explain"
-        android:textColor="@color/white"
+        android:text="Health Declaration for date 10/01/21"
         android:textSize="23sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="402dp"
-        android:layout_height="518dp"
-        android:layout_marginTop="6dp"
-        android:background="@color/white"
+    <TextView
+        android:id="@+id/declaration_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:background="#CCCCCC"
+        android:gravity="center_horizontal"
+        android:paddingStart="10dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="7dp"
+        android:text="Harel Nizri,  Kindergarten Id: 12345678"
+        android:textSize="16sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/health_declaration_explain">
+        app:layout_constraintTop_toBottomOf="@id/headline" />
 
-        <ScrollView
-            android:id="@+id/scroll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/listview_frame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/declaration_details">
 
-            <LinearLayout
-                android:id="@+id/scroll_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="10dp">
+        <TextView
+            android:id="@+id/instruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="3dp"
+            android:gravity="left"
+            android:paddingHorizontal="15dp"
+            android:text="I declare as follows:"
+            android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/child_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/purple_200"
-                    android:gravity="center"
-                    android:paddingVertical="7dp"
-                    android:text="Child Details"
-                    android:textSize="20sp" />
+        <TextView
+            android:id="@+id/checkbox0_details"
+            android:layout_width="374dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="35dp"
+            android:background="#EEEEEE"
+            android:justificationMode="inter_word"
+            android:paddingStart="40dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/fever_check"
+            android:textSize="14sp"
+            android:typeface="serif" />
 
-                <EditText
-                    android:id="@+id/child_id"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:hint="Child Id"
-                    android:inputType="numberDecimal"
-                    android:maxLength="10"
-                    android:padding="10dp" />
+        <CheckBox
+            android:id="@+id/checkbox0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="50dp"
+            android:background="?android:attr/listChoiceIndicatorMultiple"
+            android:button="@null"
+            android:scaleX="1.60"
+            android:scaleY="1.60" />
 
-                <EditText
-                    android:id="@+id/child_family_name"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:hint="Family Name"
-                    android:inputType="textPersonName"
-                    android:padding="10dp" />
+        <TextView
+            android:id="@+id/checkbox1_details"
+            android:layout_width="374dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="109dp"
+            android:background="#EEEEEE"
+            android:justificationMode="inter_word"
+            android:paddingStart="40dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/cough_check"
+            android:textSize="14sp"
+            android:typeface="serif" />
 
-                <EditText
-                    android:id="@+id/child_name"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:hint="First Name"
-                    android:inputType="textPersonName"
-                    android:padding="10dp" />
+        <CheckBox
+            android:id="@+id/checkbox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="137dp"
+            android:background="?android:attr/listChoiceIndicatorMultiple"
+            android:button="@null"
+            android:scaleX="1.60"
+            android:scaleY="1.60"/>
 
-                <EditText
-                    android:id="@+id/child_birthday"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:hint="birthday dd/mm/yyyy"
-                    android:inputType="date"
-                    android:maxLength="10"
-                    android:padding="10dp" />
+        <TextView
+            android:id="@+id/checkbox2_details"
+            android:layout_width="374dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="216dp"
+            android:background="#EEEEEE"
+            android:justificationMode="inter_word"
+            android:paddingStart="40dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/taste_check"
+            android:textSize="14sp"
+            android:typeface="serif" />
 
-                <TextView
-                    android:id="@+id/kindergarten_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/purple_200"
-                    android:gravity="center"
-                    android:paddingVertical="7dp"
-                    android:text="Kindergarten Details"
-                    android:textSize="20sp" />
+        <CheckBox
+            android:id="@+id/checkbox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="222dp"
+            android:background="?android:attr/listChoiceIndicatorMultiple"
+            android:button="@null"
+            android:scaleX="1.60"
+            android:scaleY="1.60" />
 
-                <EditText
-                    android:id="@+id/manager"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:hint="Kindergarten Manager"
-                    android:inputType="textPersonName"
-                    android:padding="10dp" />
+        <TextView
+            android:id="@+id/checkbox3_details"
+            android:layout_width="374dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="275dp"
+            android:background="#EEEEEE"
+            android:justificationMode="inter_word"
+            android:paddingStart="40dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/contact_check"
+            android:textSize="14sp"
+            android:typeface="serif"/>
 
-                <EditText
-                    android:id="@+id/city_name"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:hint="City"
-                    android:inputType="textPostalAddress"
-                    android:padding="10dp" />
+        <CheckBox
+            android:id="@+id/checkbox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="289dp"
+            android:background="?android:attr/listChoiceIndicatorMultiple"
+            android:button="@null"
+            android:scaleX="1.60"
+            android:scaleY="1.60" />
 
-                <EditText
-                    android:id="@+id/Kindergarten_name"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:hint="Kindergarten Name"
-                    android:inputType="textShortMessage"
-                    android:padding="10dp" />
+        <TextView
+            android:id="@+id/checkbox4_details"
+            android:layout_width="374dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="350dp"
+            android:background="#EEEEEE"
+            android:justificationMode="inter_word"
+            android:paddingStart="40dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/isolation_check"
+            android:textSize="14sp"
+            android:typeface="serif" />
 
-                <TextView
-                    android:id="@+id/parent_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/purple_200"
-                    android:gravity="center"
-                    android:paddingVertical="7dp"
-                    android:text="Parent Details"
-                    android:textSize="20sp" />
+        <CheckBox
+            android:id="@+id/checkbox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="365dp"
+            android:background="?android:attr/listChoiceIndicatorMultiple"
+            android:button="@null"
+            android:scaleX="1.60"
+            android:scaleY="1.60" />
 
-                <EditText
-                    android:id="@+id/parent_id"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:hint="ID"
-                    android:inputType="numberDecimal"
-                    android:maxLength="10"
-                    android:padding="10dp" />
+    </FrameLayout>
 
-                <EditText
-                    android:id="@+id/parent_family_name"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:hint="Family Name"
-                    android:inputType="textPersonName"
-                    android:padding="10dp" />
-
-                <EditText
-                    android:id="@+id/parent_name"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:hint="First Name"
-                    android:inputType="textPersonName"
-                    android:padding="10dp" />
-
-                <EditText
-                    android:id="@+id/phone_number"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:hint="Phone Number"
-                    android:inputType="phone"
-                    android:maxLength="10"
-                    android:padding="10dp" />
-
-
-                <EditText
-                    android:id="@+id/Email_name"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"
-                    android:padding="10dp"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
-
-                    <CheckBox
-                        android:id="@+id/checkbox1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/checkbox1_details"
-                        android:layout_width="320dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:justificationMode="inter_word"
-                        android:text="@string/fever_check"
-                        android:textSize="13sp"
-                        app:layout_constraintStart_toEndOf="@+id/checkbox1"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <CheckBox
-                        android:id="@+id/checkbox2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox1" />
-
-                    <TextView
-                        android:id="@+id/checkbox2_details"
-                        android:layout_width="320dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="13dp"
-                        android:justificationMode="inter_word"
-                        android:text="@string/cough_check"
-                        android:textSize="13sp"
-                        app:layout_constraintStart_toEndOf="@+id/checkbox2"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox1_details" />
-
-                    <CheckBox
-                        android:id="@+id/checkbox3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="14dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox2" />
-
-                    <TextView
-                        android:id="@+id/checkbox3_details"
-                        android:layout_width="320dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:justificationMode="inter_word"
-                        android:text="@string/taste_check"
-                        android:textSize="13sp"
-                        app:layout_constraintStart_toEndOf="@+id/checkbox3"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox2_details" />
-
-                    <CheckBox
-                        android:id="@+id/checkbox4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox3" />
-
-                    <TextView
-                        android:id="@+id/checkbox4_details"
-                        android:layout_width="320dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="12dp"
-                        android:justificationMode="inter_word"
-                        android:text="@string/contact_check"
-                        android:textSize="13sp"
-                        app:layout_constraintStart_toEndOf="@+id/checkbox4"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox3_details" />
-
-                    <CheckBox
-                        android:id="@+id/checkbox5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox4" />
-
-                    <TextView
-                        android:id="@+id/checkbox5_details"
-                        android:layout_width="320dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="19dp"
-                        android:justificationMode="inter_word"
-                        android:text="@string/isolation_check"
-                        android:textSize="13sp"
-                        app:layout_constraintStart_toEndOf="@+id/checkbox5"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox4_details" />
-
-                    <Button
-                        android:id="@+id/submit_button"
-                        android:layout_width="132dp"
-                        android:layout_height="70dp"
-                        android:gravity="center"
-                        android:layout_marginTop="19dp"
-                        android:text="Submit"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox5_details" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
-
-
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:background="#9C9C9C"
+        android:text="Confirm"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

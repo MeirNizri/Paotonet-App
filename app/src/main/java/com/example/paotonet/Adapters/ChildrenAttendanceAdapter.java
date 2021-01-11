@@ -3,7 +3,6 @@ package com.example.paotonet.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,23 +15,18 @@ import android.widget.TextView;
 import com.example.paotonet.Objects.Child;
 import com.example.paotonet.Objects.MyDate;
 import com.example.paotonet.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChildrenAdapter extends ArrayAdapter<Child> {
+public class ChildrenAttendanceAdapter extends ArrayAdapter<Child> {
     TextView health_declaration_msg;
     boolean result;
     private Context context;
     private List<Child> children;
     private ArrayList<Integer> presentChildrenID = new ArrayList<Integer>();
 
-    public ChildrenAdapter(Context context, int resource, int textViewResourceId, List<Child> children) {
+    public ChildrenAttendanceAdapter(Context context, int resource, int textViewResourceId, List<Child> children) {
         super(context, resource, textViewResourceId, children);
         this.context = context;
         this.children = children;
@@ -42,7 +36,7 @@ public class ChildrenAdapter extends ArrayAdapter<Child> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // create listView
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
-        View listView = layoutInflater.inflate(R.layout.custom_child, null, false);
+        View listView = layoutInflater.inflate(R.layout.custom_child_attendance, null, false);
 
         // create views
         TextView child_name = (TextView) listView.findViewById(R.id.child_name);

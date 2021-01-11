@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_shape2">
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="380dp"
+        android:layout_height="450dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/activity_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Kindergarten Activity Times:"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/activity_time_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:lineSpacingExtra="3dp"
+                android:text="-  The opening date of the school year is Sunday  \n\t  30/08/2020 and The last day of school is 08/08/2021.
+                      \n-  The kindergarten operates every day from 7:00 and  \n\t ends in Sundays-Thursdays at 16:00 and on Fridays \n\t at  12:45.
+                      \n-  Do not bring children to the kindergarten after \n\t 9:00. Arrival after 9:00 is subject to the principal \n\t approval and will be given only in exceptional \n\t cases."
+                android:textSize="14sp"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/nutrition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Nutrition:"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nutrition_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:lineSpacingExtra="3dp"
+                android:text="The breakfast and lunch menu is determined in consultation with a nutritionist. The children receive breakfast, lunch and an afternoon meal at the kindergarten. No need to bring a lunch bag. In cases of sensitivity to certain foods or food ingredients, parents should inform the principal and teacher."
+                android:textSize="14sp"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/what_to_bring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="What to bring to kindergarten:"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/what_to_bring_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:lineSpacingExtra="3dp"
+                android:text="-  Materna or milk.
+        \n-  Complete clothing system.
+        \n-  Pack of diapers and wipes.
+        \n-  A pacifier and a bottle.
+        \n-  Personal thermometer.
+        \n*  Mark your child's name on each item."
+                android:textSize="14sp"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/health_procedures"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Health_Procedures:"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/health_procedures_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Do not send a child in the following cases:
+                      \n- Heat above 38 degrees
+                      \n- A laxative child.
+                      \n- A child with an eye infection.
+        \n\n A child who is absent from the kindergarten for more than 3 days due to illness will only be admitted with the approval of a doctor.
+        \n\n Dear parents, please take care of masks, health declaration and heat measurement."
+                android:textSize="14sp"
+                android:typeface="serif" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/return_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="#9C9C9C"
+        android:text="back"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scroll" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
