@@ -6,7 +6,6 @@ public class Teacher implements Serializable {
     String name;
     String email;
     int kindergartenId;
-    Messages messages;
 
     public Teacher() {
         super();
@@ -16,13 +15,6 @@ public class Teacher implements Serializable {
         this.name = name;
         this.email = email;
         this.kindergartenId = kindergartenId;
-    }
-
-    public Teacher(String name, String email, int kindergartenId, Messages messages) {
-        this.name = name;
-        this.email = email;
-        this.kindergartenId = kindergartenId;
-        this.messages = messages;
     }
 
     public String getName() {
@@ -47,14 +39,6 @@ public class Teacher implements Serializable {
 
     public void setKindergartenId(int kindergartenId) {
         this.kindergartenId = kindergartenId;
-    }
-
-    public Messages getMessages() {
-        return messages;
-    }
-
-    public void setMessages(Messages messages) {
-        this.messages = messages;
     }
 }
 

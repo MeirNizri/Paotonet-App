@@ -3,7 +3,10 @@ package com.example.paotonet.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,9 +31,13 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ParentLogin extends AppCompatActivity implements View.OnClickListener {
     EditText email, password;
-    Button login, back;
+    Button login, signup;
     TextView invalid;
     FirebaseAuth firebaseAuth;
+
+    Dialog signUpDialog;
+    EditText parentName, kindergartenId, phone, parentEmail, childName, childId, moreInfo;
+    Button signBtn, closeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +45,14 @@ public class ParentLogin extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_parent_login);
 
         login = (Button) findViewById(R.id.login);
-        back = (Button) findViewById(R.id.back);
+        signup = (Button) findViewById(R.id.signup);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         invalid = (TextView) findViewById(R.id.invalid_info);
         firebaseAuth = FirebaseAuth.getInstance();
 
         login.setOnClickListener(this);
-        back.setOnClickListener(this);
+        signup.setOnClickListener(this);
     }
 
     @Override
@@ -55,9 +62,14 @@ public class ParentLogin extends AppCompatActivity implements View.OnClickListen
             String passwordText = password.getText().toString();
             signIn(emailText, passwordText);
         }
-        if (v == back) {
-            firebaseAuth.signOut();
-            finish();
+        if (v == signup) {
+            createSignUpDialog();
+        }
+        if (v == signBtn) {
+            Toast.makeText(getApplicationContext(), "sign up", Toast.LENGTH_SHORT).show();
+        }
+        if (v == closeBtn) {
+            signUpDialog.dismiss();
         }
     }
 
@@ -109,5 +121,29 @@ public class ParentLogin extends AppCompatActivity implements View.OnClickListen
         invalid.setText("Incorrect email address or password. Please try again.");
         email.setText("");
         password.setText("");
+    }
+
+    public void createSignUpDialog(){
+        // set dialog Properties
+        signUpDialog = new Dialog(this);
+        signUpDialog.setContentView(R.layout.parent_signup_dialog);
+        signUpDialog.setCancelable(true);
+        signUpDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        // initialize views
+        parentName = (EditText)signUpDialog.findViewById(R.id.parent_name);
+        kindergartenId = (EditText)signUpDialog.findViewById(R.id.kindergarten_id);
+        phone = (EditText)signUpDialog.findViewById(R.id.phone);
+        parentEmail = (EditText)signUpDialog.findViewById(R.id.email);
+        childName = (EditText)signUpDialog.findViewById(R.id.child_name);
+        childId = (EditText)signUpDialog.findViewById(R.id.child_id);
+        moreInfo = (EditText)signUpDialog.findViewById(R.id.more_info);
+        signBtn = (Button)signUpDialog.findViewById(R.id.sign_up);
+        closeBtn = (Button)signUpDialog.findViewById(R.id.close);
+        signBtn.setOnClickListener(this);
+        closeBtn.setOnClickListener(this);
+
+        // open dialog
+        signUpDialog.show();
     }
 }
