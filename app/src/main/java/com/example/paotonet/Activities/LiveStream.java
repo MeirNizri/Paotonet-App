@@ -7,6 +7,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.example.paotonet.R;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 public class LiveStream extends AppCompatActivity {
     private WebView webview;
@@ -15,10 +16,7 @@ public class LiveStream extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_stream);
-        webview = (WebView) findViewById(R.id.webview);
-        webview.setWebViewClient(new WebViewClient());
-        webview.loadUrl("https://zoo.sandiegozoo.org/cams/baboon-cam");
-        webview.setVerticalScrollBarEnabled(true);
-        webview.setHorizontalScrollBarEnabled(true);
+        YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
+        getLifecycle().addObserver(youTubePlayerView);
     }
 }
