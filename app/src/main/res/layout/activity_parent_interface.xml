@@ -83,6 +83,7 @@
             android:layout_marginTop="85dp"
             android:text="   Private \n Messages"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:textStyle="bold" />
     </FrameLayout>
 
@@ -126,6 +127,7 @@
             android:layout_marginTop="85dp"
             android:text="Digital Health\n  declaration"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:textStyle="bold" />
     </FrameLayout>
 
@@ -170,6 +172,7 @@
             android:layout_marginTop="85dp"
             android:text="   General \n Messages"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:textStyle="bold" />
     </FrameLayout>
 
@@ -213,6 +216,7 @@
             android:layout_marginTop="85dp"
             android:text="    Live\n Stream"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:textStyle="bold" />
     </FrameLayout>
 

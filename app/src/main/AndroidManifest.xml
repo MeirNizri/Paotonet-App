@@ -11,9 +11,10 @@
         android:theme="@style/Theme.Paotonet">
         <activity android:name=".Activities.ChildrenInfo"></activity>
         <activity android:name=".Activities.GeneralMessages" />
-        <activity android:name=".Activities.LiveStream"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            />
+        <activity
+            android:name=".Activities.LiveStream"
+            android:screenOrientation="landscape">
+        </activity>
         <activity android:name=".Activities.HealthStatement" />
         <activity android:name=".Activities.ParentInterface" />
         <activity android:name=".Activities.ParentLogin" />

@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Reports {
     ArrayList<DailyReport> reports;
 
-
-    public Reports() {
+    public Reports(){
         this.reports = new ArrayList<DailyReport>();
     }
     public Reports(ArrayList<DailyReport> reports) {
@@ -22,8 +21,11 @@ public class Reports {
 
     public void addReport(DailyReport r){
         for(int i=0; i<reports.size(); i++) {
-            if(r.getDate().toDateString().equals(reports.get(i).getDate().toDateString()))
+            if(r.getDate().toDateString().equals(reports.get(i).getDate().toDateString())) {
+                reports.remove(i);
                 reports.add(i, r);
+                return;
+            }
         }
         reports.add(r);
     }

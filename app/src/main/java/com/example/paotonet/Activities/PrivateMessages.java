@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -27,6 +29,8 @@ import com.example.paotonet.Objects.Message;
 import com.example.paotonet.Objects.Message_Comperator;
 import com.example.paotonet.Objects.Messages;
 import com.example.paotonet.Objects.MyDate;
+import com.example.paotonet.Objects.Parent;
+import com.example.paotonet.Objects.Teacher;
 import com.example.paotonet.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -50,7 +54,10 @@ public class PrivateMessages extends AppCompatActivity implements View.OnClickLi
     Button received;
     Button newMsg;
 
+    FirebaseDatabase database;
     DatabaseReference dbRef;
+    DatabaseReference dbRef2;
+
     ListView listView;
     MessageAdapter sendMessageAdapter;
     MessageAdapter receivedMessageAdapter;
@@ -58,7 +65,7 @@ public class PrivateMessages extends AppCompatActivity implements View.OnClickLi
     static boolean sendMessageMode;
 
     Dialog newMsgDialog;
-    EditText destination;
+    AutoCompleteTextView destination;
     EditText subject;
     EditText content;
     Button sendBtn;
@@ -76,7 +83,7 @@ public class PrivateMessages extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_private_messages);
 
         // find database reference to the kindergarten messages
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
         kindergartenId = String.valueOf(getIntent().getExtras().getInt("kindergartenId"));
         userType = getIntent().getExtras().getString("userType");
         dbRef = database.getReference("kindergartens/" + kindergartenId + "/messages");
@@ -194,7 +201,7 @@ public class PrivateMessages extends AppCompatActivity implements View.OnClickLi
         newMsgDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         // initialize views
-        destination = (EditText)newMsgDialog.findViewById(R.id.destination);
+        destination = (AutoCompleteTextView) newMsgDialog.findViewById(R.id.destination);
         subject = (EditText)newMsgDialog.findViewById(R.id.subject);
         content = (EditText)newMsgDialog.findViewById(R.id.content);
         sendBtn = (Button)newMsgDialog.findViewById(R.id.send);
@@ -202,8 +209,40 @@ public class PrivateMessages extends AppCompatActivity implements View.OnClickLi
         sendBtn.setOnClickListener(this);
         cancelNewMsgBtn.setOnClickListener(this);
 
+        // set the destination list of user to choose from
+        ArrayList<String> usersName = getAllUsersName();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.select_dialog_item,usersName);
+        destination.setThreshold(0); //will start working from first character
+        destination.setAdapter(adapter);
+
         // open dialog
         newMsgDialog.show();
+    }
+
+    public ArrayList<String> getAllUsersName() {
+        ArrayList<String> users = new ArrayList<String>();
+        dbRef2 = database.getReference("users");
+        // Set listener on the database to extract all user messages
+        dbRef2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Parent p = new Parent();
+                Teacher t = new Teacher();
+                for(DataSnapshot data : dataSnapshot.child("parents").getChildren()){
+                    p = data.getValue(Parent.class);
+                    users.add(p.getName());
+                }
+                for(DataSnapshot data : dataSnapshot.child("teachers").getChildren()){
+                    t = data.getValue(Teacher.class);
+                    users.add(t.getName());
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(null, "loadPost:onCancelled", databaseError.toException());
+            }
+        });
+        return users;
     }
 
     // Listener that inform the user if the information is stored properly in thw DB or not

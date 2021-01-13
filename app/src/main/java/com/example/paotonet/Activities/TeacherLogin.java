@@ -1,6 +1,9 @@
 package com.example.paotonet.Activities;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +15,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.paotonet.Objects.Child;
+import com.example.paotonet.Objects.Children;
+import com.example.paotonet.Objects.MyDate;
+import com.example.paotonet.Objects.Parent;
 import com.example.paotonet.Objects.Teacher;
 import com.example.paotonet.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,9 +33,14 @@ import com.google.firebase.database.ValueEventListener;
 
 public class TeacherLogin extends AppCompatActivity implements View.OnClickListener {
     EditText email, password;
-    Button login, back;
-    TextView invalid;
+    Button login, signup;
+    TextView invalid, forgetPassword;
     FirebaseAuth firebaseAuth;
+    DatabaseReference dbref_;
+
+    Dialog signUpDialog, resetDialog;
+    EditText teacherName, kindergartenId, teacherEmail, teacherPassword, resetEmail;
+    Button signBtn, closeBtn, resetBtn, closeResetBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +48,16 @@ public class TeacherLogin extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_teacher_login);
 
         login = (Button) findViewById(R.id.login);
-        back = (Button) findViewById(R.id.back);
+        signup = (Button) findViewById(R.id.signup);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         invalid = (TextView) findViewById(R.id.invalid_info);
+        forgetPassword = (TextView) findViewById((R.id.forgot_password));
         firebaseAuth = FirebaseAuth.getInstance();
 
         login.setOnClickListener(this);
-        back.setOnClickListener(this);
+        signup.setOnClickListener(this);
+        forgetPassword.setOnClickListener(this);
     }
 
     @Override
@@ -53,9 +67,23 @@ public class TeacherLogin extends AppCompatActivity implements View.OnClickListe
             String passwordText = password.getText().toString();
             signIn(emailText, passwordText);
         }
-        if (v == back) {
-            firebaseAuth.signOut();
-            finish();
+        if (v == signup) {
+            createSignUpDialog();
+        }
+        if (v == forgetPassword) {
+            createResetDialog();
+        }
+        if (v == signBtn) {
+            signUp();
+        }
+        if (v == closeBtn) {
+            signUpDialog.dismiss();
+        }
+        if (v == resetBtn) {
+            resetPassword();
+        }
+        if (v == closeResetBtn) {
+            resetDialog.dismiss();
         }
     }
 
@@ -105,5 +133,97 @@ public class TeacherLogin extends AppCompatActivity implements View.OnClickListe
         invalid.setText("Incorrect email address or password. Please try again.");
         email.setText("");
         password.setText("");
+    }
+
+    public void createSignUpDialog() {
+        // set dialog Properties
+        signUpDialog = new Dialog(this);
+        signUpDialog.setContentView(R.layout.teacher_signup_dialog);
+        signUpDialog.setCancelable(true);
+        signUpDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        // initialize views
+        teacherName = (EditText) signUpDialog.findViewById(R.id.teacher_name);
+        kindergartenId = (EditText) signUpDialog.findViewById(R.id.kindergarten_id);
+        teacherEmail = (EditText) signUpDialog.findViewById(R.id.email);
+        teacherPassword = (EditText) signUpDialog.findViewById(R.id.password);
+        signBtn = (Button) signUpDialog.findViewById(R.id.sign_up);
+        closeBtn = (Button) signUpDialog.findViewById(R.id.close);
+        signBtn.setOnClickListener(this);
+        closeBtn.setOnClickListener(this);
+
+        // open dialog
+        signUpDialog.show();
+    }
+
+    public void createResetDialog() {
+        // set dialog Properties
+        resetDialog = new Dialog(this);
+        resetDialog.setContentView(R.layout.reset_password);
+        resetDialog.setCancelable(true);
+        resetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        // initialize views
+        resetEmail = (EditText) resetDialog.findViewById(R.id.email);
+        resetBtn = (Button) resetDialog.findViewById(R.id.reset);
+        closeResetBtn = (Button) resetDialog.findViewById(R.id.close);
+        resetBtn.setOnClickListener(this);
+        closeResetBtn.setOnClickListener(this);
+
+        // open dialog
+        resetDialog.show();
+    }
+
+    public void resetPassword() {
+        String emailText = resetEmail.getText().toString();
+        firebaseAuth.sendPasswordResetEmail(emailText)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "New password send to your email", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Error with your email address. \nTry again or contact app support", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+    public void signUp() {
+        // initialize views
+        teacherName = (EditText) signUpDialog.findViewById(R.id.teacher_name);
+        kindergartenId = (EditText) signUpDialog.findViewById(R.id.kindergarten_id);
+        teacherEmail = (EditText) signUpDialog.findViewById(R.id.email);
+        teacherPassword = (EditText) signUpDialog.findViewById(R.id.password);
+
+        //get mail and password
+        String mail = teacherEmail.getText().toString();
+        String pass = teacherPassword.getText().toString();
+
+        //get parent details
+        String teacherName_ = teacherName.getText().toString();
+        String kindergartenId_ = kindergartenId.getText().toString();
+
+        if (pass.isEmpty() || mail.isEmpty() || teacherName_.isEmpty() || kindergartenId_.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please fill all details", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        firebaseAuth.createUserWithEmailAndPassword(mail, pass).
+                addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Teacher t = new Teacher(teacherName_, mail, Integer.parseInt(kindergartenId_));
+
+                        // insert parent and child to database
+                        dbref_ = FirebaseDatabase.getInstance().getReference();
+                        dbref_.child("users").child("teachers").child(firebaseAuth.getUid()).setValue(t);
+
+                        //show success
+                        Toast.makeText(getApplicationContext(), "Success! you can now login to Paotonet", Toast.LENGTH_LONG).show();
+                        signUpDialog.dismiss();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Error with your registration. \nTry again or contact app support", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 }

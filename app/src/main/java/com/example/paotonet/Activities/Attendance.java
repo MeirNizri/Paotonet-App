@@ -41,6 +41,7 @@ import java.util.Calendar;
 public class Attendance extends AppCompatActivity implements View.OnClickListener {
     String kindergartenId;
 
+    DatabaseReference dbRef;
     Children allChildren = new Children();
     Reports allReports = new Reports();
     ArrayList<Child> children = new ArrayList<Child>();
@@ -63,7 +64,7 @@ public class Attendance extends AppCompatActivity implements View.OnClickListene
         // find database reference to the kindergarten children
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         kindergartenId = String.valueOf(getIntent().getExtras().getInt("kindergartenId"));
-        DatabaseReference dbRef = database.getReference("kindergartens/" + kindergartenId + "/children");
+        dbRef = database.getReference("kindergartens/" + kindergartenId);
 
         // initialize listView and adapter
         listView = findViewById(R.id.listView);
@@ -74,7 +75,8 @@ public class Attendance extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get all children from the DB and set adapter
-                allChildren = dataSnapshot.getValue(Children.class);
+                allChildren = dataSnapshot.child("children").getValue(Children.class);
+                allReports = dataSnapshot.child("reports").getValue(Reports.class);
                 children.clear();
                 children.addAll(allChildren.getChildren());
                 listView.setAdapter(adapter);
@@ -122,25 +124,11 @@ public class Attendance extends AppCompatActivity implements View.OnClickListene
         ArrayList<Integer> presentChildrenID = adapter.getPresentChildrenID();
         DailyReport report = new DailyReport(presentChildrenID);
 
-        // find database reference to the kindergarten reports
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference dbR = db.getReference("kindergartens/" + kindergartenId + "/reports");
-
-        // Get all reports from the DB
-        dbR.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                allReports = dataSnapshot.getValue(Reports.class);
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w(null, "loadPost:onCancelled", databaseError.toException());
-            }
-        });
-
+        if(allReports.getReports().isEmpty())
+            Toast.makeText(getApplicationContext(),"empty",Toast.LENGTH_LONG).show();
         // add reports to DB
         allReports.addReport(report);
-        dbR.setValue(allReports, listener);
+        dbRef.child("reports").setValue(allReports, listener);
     }
 
     // Listener that inform the user if the information is stored properly in the DB or not

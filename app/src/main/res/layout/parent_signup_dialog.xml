@@ -7,9 +7,9 @@
     tools:context=".Activities.ChildrenInfo">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="320dp"
-        android:layout_height="330dp"
-        android:background="#277AB0"
+        android:layout_width="330dp"
+        android:layout_height="450dp"
+        android:background="@drawable/signup_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
             android:text="Parent Sign Up"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:textStyle="bold"
+            android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -81,35 +81,52 @@
             android:layout_width="135dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
             android:background="#DDFFFFFF"
             android:hint="Phone Number"
+            android:inputType="phone"
             android:paddingStart="10dp"
             android:paddingTop="5dp"
             android:paddingEnd="10dp"
             android:paddingBottom="5dp"
             android:textSize="16sp"
-            android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/kindergarten_id" />
+
 
         <EditText
             android:id="@+id/email"
-            android:layout_width="135dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:background="#DDFFFFFF"
             android:hint="Email Address"
+            android:inputType="textEmailAddress"
             android:paddingStart="10dp"
             android:paddingTop="5dp"
             android:paddingEnd="10dp"
             android:paddingBottom="5dp"
             android:textSize="14sp"
-            android:inputType="textEmailAddress"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/parent_name" />
+            app:layout_constraintTop_toBottomOf="@+id/phone" />
 
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:background="#DDFFFFFF"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
 
         <TextView
             android:id="@+id/headline2"
@@ -123,7 +140,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email" />
+            app:layout_constraintTop_toBottomOf="@+id/password" />
 
         <EditText
             android:id="@+id/child_name"
@@ -164,33 +181,33 @@
             android:layout_width="135dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
             android:background="#DDFFFFFF"
             android:hint="birthdate"
+            android:inputType="date"
             android:paddingStart="10dp"
             android:paddingTop="5dp"
             android:paddingEnd="10dp"
             android:paddingBottom="5dp"
             android:textSize="16sp"
-            android:inputType="date"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/child_id" />
 
 
         <EditText
             android:id="@+id/more_info"
-            android:layout_width="135dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="56dp"
             android:background="#DDFFFFFF"
             android:hint="More Info"
+            android:inputType="textAutoCorrect"
             android:paddingStart="10dp"
             android:paddingTop="5dp"
             android:paddingEnd="10dp"
             android:paddingBottom="5dp"
             android:textSize="16sp"
-            android:inputType="textAutoCorrect"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/child_name" />
 
